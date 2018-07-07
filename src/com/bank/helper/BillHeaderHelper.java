@@ -62,6 +62,7 @@ public class BillHeaderHelper {
 			billHeaderBO.setRedemptionStatus(resultSet.getString(17));
 			billHeaderBO.setBillRedemSerial(resultSet.getString(18));
 			billHeaderBO.setBillRedemNumber(resultSet.getInt(19));
+			billHeaderBO.setComments(resultSet.getString(20));
 		return billHeaderBO;			
 		
 	}
@@ -89,6 +90,7 @@ public class BillHeaderHelper {
 			billHeaderBO.setRedemptionStatus(resultSet.getString(17));
 			billHeaderBO.setBillRedemSerial(resultSet.getString(18));
 			billHeaderBO.setBillRedemNumber(resultSet.getInt(19));
+			billHeaderBO.setComments(resultSet.getString(20));
 		return billHeaderBO;			
 		
 	}
@@ -203,6 +205,7 @@ public class BillHeaderHelper {
 		billForm.getBillHeaderBO().setProductTypeNumber(new ProductTypeDAO(jndiName).executeProductTypeCodeReturnProductNo("GOLD"));
 		billForm.getBillHeaderBO().setAmount(0);
 		billForm.getBillHeaderBO().setAmountInWords("");
+		billForm.getBillHeaderBO().setComments("");
 		billForm.getBillHeaderBO().setGrams(0.0);
 		billForm.getBillHeaderBO().setPresentValue(0);
 		billForm.getBillHeaderBO().setMonthlyIncome(getParameterHelper().getMonthlyIncome());

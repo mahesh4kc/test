@@ -1,11 +1,9 @@
 package com.bank.action;
 
 import java.io.IOException;
-import java.io.InputStream;
 import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Properties;
 
 import javax.mail.MessagingException;
 import javax.mail.internet.AddressException;
@@ -25,7 +23,6 @@ import com.bank.helper.ParameterHelper;
 import com.bank.successmessage.SuccessMessage;
 import com.bank.util.BankConstant;
 import com.bank.util.LogMethods;
-import com.bank.util.PropertyUtil;
 import com.bank.util.SendMail;
 
 public class LoginAction extends SuccessMessage{
@@ -252,6 +249,8 @@ public class LoginAction extends SuccessMessage{
 		clearLoginPage(loginForm);
 		HttpSession session = request.getSession();
 		session.removeAttribute("loggedInUser");
+		session.removeAttribute("databaseName");
+		session.removeAttribute("shopDetails");
 		session.invalidate();
 		return mapping.findForward("same");
 	}

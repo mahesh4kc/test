@@ -6,14 +6,18 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<jsp:include page="includeJS.jsp"></jsp:include>
+<!-- Jquery Starts -->
+<jsp:include page="Jquery-validation-js-css.jsp"></jsp:include> 
+<!-- Jquery Ends -->
+
 <script type="text/javascript">
 function bodyOnLoad(){
 	document.getElementById("loginID").focus();
-}
-	
-$(document).ready(function() {
-	$("#form1").validationEngine()
+}	
+
+$(document).ready(function(){
+	// binds form submission and fields to the validation engine
+	$("#form1").validationEngine();
 });
 
 
@@ -35,7 +39,7 @@ $(document).ready(function() {
 		</label></td>
 		<td WIDTH="10%">
 			<html:text property="loginID" size="25" maxlength="15" styleId="loginID" 
-			styleClass="validate[required,length[6,15],custom[noSpecialCharactersForUserId]]" onfocus="true"></html:text>		
+			styleClass="validate[required,minSize[6]] text-input" onfocus="true"></html:text>		
 		</td>
 		
 	</tr>

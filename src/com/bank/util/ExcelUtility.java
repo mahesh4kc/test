@@ -38,7 +38,7 @@ public class ExcelUtility extends ResponseUtility {
 	    
 	    public List<String> records;
 	   
-	    private static final int RowStartIndex = 3;
+	    private static final int RowStartIndex = 2;
 	    
 	    private static final int ColumnStartIndex = 0;
 	    
@@ -67,7 +67,7 @@ public class ExcelUtility extends ResponseUtility {
 		   
 		    //wb.setRepeatingRowsAndColumns(0,0,2,-1,-1);                
             //sheet.setAutobreaks(true);
-            sheet.setDisplayGridlines(false);
+            sheet.setDisplayGridlines(true);
             //sheet.setFitToPage(true);
             sheet.setGridsPrinted(true);  
             
@@ -134,15 +134,15 @@ public class ExcelUtility extends ResponseUtility {
      headerStyle.setBorderBottom(HSSFCellStyle.BORDER_THIN);
      
      //Border Colors for the Body
-     headerStyle.setRightBorderColor(HSSFColor.LIGHT_BLUE.index);
-     headerStyle.setLeftBorderColor(HSSFColor.LIGHT_BLUE.index);
-     headerStyle.setTopBorderColor(HSSFColor.LIGHT_BLUE.index);
-     headerStyle.setBottomBorderColor(HSSFColor.LIGHT_BLUE.index);
+     headerStyle.setRightBorderColor(HSSFColor.GREY_25_PERCENT.index);
+     headerStyle.setLeftBorderColor(HSSFColor.GREY_25_PERCENT.index);
+     headerStyle.setTopBorderColor(HSSFColor.GREY_25_PERCENT.index);
+     headerStyle.setBottomBorderColor(HSSFColor.GREY_25_PERCENT.index);
      
-     headerStyle.setFillBackgroundColor(HSSFColor.SKY_BLUE.index);
-     headerStyle.setFillForegroundColor(HSSFColor.SKY_BLUE.index);
+     headerStyle.setFillBackgroundColor(HSSFColor.GREY_25_PERCENT.index);
+     headerStyle.setFillForegroundColor(HSSFColor.GREY_25_PERCENT.index);
      headerStyle.setFillPattern(HSSFCellStyle.SOLID_FOREGROUND); 
-     setBorders(headerStyle);
+     //setBorders(headerStyle);
     
      this.styles.put("headerStyle", headerStyle);
      }
@@ -154,7 +154,7 @@ public class ExcelUtility extends ResponseUtility {
      //Font for the Body
      HSSFFont bodyFont = workbook.createFont();
      bodyFont.setFontHeightInPoints((short)8);
-     bodyFont.setBoldweight(HSSFFont.BOLDWEIGHT_BOLD);
+     //bodyFont.setBoldweight(HSSFFont.BOLDWEIGHT_BOLD);
      bodyFont.setColor(HSSFColor.GREY_80_PERCENT.index);
      bodyStyle.setFont(bodyFont);
      
@@ -164,7 +164,7 @@ public class ExcelUtility extends ResponseUtility {
      bodyStyle.setBorderTop(HSSFCellStyle.BORDER_THIN);
      bodyStyle.setBorderBottom(HSSFCellStyle.BORDER_THIN);
      
-     //Border Colors for the Body
+     /*//Border Colors for the Body
      bodyStyle.setRightBorderColor(HSSFColor.LIGHT_BLUE.index);
      bodyStyle.setLeftBorderColor(HSSFColor.LIGHT_BLUE.index);
      bodyStyle.setTopBorderColor(HSSFColor.LIGHT_BLUE.index);
@@ -173,7 +173,7 @@ public class ExcelUtility extends ResponseUtility {
     
      bodyStyle.setFillBackgroundColor(HSSFColor.SKY_BLUE.index);
      bodyStyle.setFillForegroundColor(HSSFColor.SKY_BLUE.index);
-     bodyStyle.setFillPattern(HSSFCellStyle.SOLID_FOREGROUND);     
+     bodyStyle.setFillPattern(HSSFCellStyle.SOLID_FOREGROUND);    */ 
      bodyStyle.setWrapText(true);
      this.styles.put("bodyStyle", bodyStyle);
      }
