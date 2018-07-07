@@ -37,8 +37,8 @@ $(document).ready(function() {
 	<logic:equal name="billForm" property="billDeleteButtonFlag" value="Y">
 	<html:submit property="method" ><bean:message key="button.delete" /></html:submit>
 	</logic:equal>
-	<button type="button" onclick="addRow('dataTable');loadProductDescriptions();">Add Row</button>
-	<button type="button" onclick="deleteRow('dataTable');">Delete Row</button>
+	<button type="button" onclick="addRow('dataTable');loadProductDescriptions();"><bean:message key="addRow" /></button>
+	<button type="button" onclick="deleteRow('dataTable');"><bean:message key="deleteRow" /></button>
 </div>
 <jsp:include page="htmlError.jsp"></jsp:include>
 <jsp:include page="billCommon.jsp"></jsp:include>
