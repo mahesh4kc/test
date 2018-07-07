@@ -21,9 +21,10 @@ public class SendMail {
 	private Properties props;
 	
 	public SendMail(){
-		host = "mail.jewelbankers.com";
-	    from = BankConstant.SUPPORT_MAIL_ID;
-	    pass = "Bhawarlalkag@82";
+		CryptoLibrary cl = new CryptoLibrary();
+		host = cl.decrypt(PropertyUtil.getProperties().getProperty("jewelBankersHostMail"));
+	    from = PropertyUtil.getProperties().getProperty("jewelBankersSupportMailId"); 
+	    pass = cl.decrypt(PropertyUtil.getProperties().getProperty("jewelBankersSupportMailIdPassword"));
 	    props = System.getProperties();
 	    //props.put("mail.smtp.starttls.enable", "true"); // added this line
 	    props.put("mail.smtp.host", host);

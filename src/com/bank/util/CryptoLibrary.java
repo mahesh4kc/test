@@ -92,7 +92,7 @@ public class CryptoLibrary
                 try
                 {
                 CryptoLibrary cl = new CryptoLibrary();
-                String user = "OMPRAKASH".toUpperCase().trim();
+                String user = "mail.jewelbankers.comXj".toUpperCase().trim();
                 String pass = "jewelbankers";
                 String euser = cl.encrypt(user);
                 String epass = cl.encrypt(pass);

@@ -11,10 +11,39 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 
 <title><bean:message key="label.productDescription.title" />  </title>
+<script type="text/javascript">
+$(document).keydown(function(e){                                 
+    //alert(code);
+    if(e.ctrlKey){
+     var code = e.which || e.keyCode;
+     switch ( code )
+    {
+                   case 115:
+                  	  $('form#form1').attr({action: 'productDescription.do?method=SAVE'});                                              
+                        $('form#form1').submit();
+                     return false;
+                     case 83:
+                  	   $('form#form1').attr({action: 'productDescription.do?method=SAVE'});                                              
+                         $('form#form1').submit();
+                     return false;
+                     case 99:
+                     	  $('form#form1').attr({action: 'productDescription.do?method=CLEAR'});                                              
+                           $('form#form1').submit();
+                        return false;
+   					case 67:
+                     	   $('form#form1').attr({action: 'productDescription.do?method=CLEAR'});                                              
+                            $('form#form1').submit();
+                        return false;
+                   default:
+                     break;
+     }
+    } 
+        });
+</script>
 </head>
 <body  onload="bodyOnLoad('productDescription');">
 
-<html:form action="productDescription" method="POST">
+<html:form action="productDescription" method="POST" styleId="form1">
 <div align="center" class="shopDetails" ><bean:write name="productDescriptionForm" property="shopDetails"/> </div>
 <div align="right">User : <bean:write name="productDescriptionForm" property="userLoggedIn"/> </div>
 
@@ -61,8 +90,8 @@
 
 
 <div align="center">
-	<button type="button" onclick="addRow('dataTable')">Add Row</button>
-	<button type="button" onclick="deleteRow('dataTable')">Delete Row</button>
+	<button type="button" onclick="addRow('dataTable')"><bean:message key="addRow" /></button>
+	<button type="button" onclick="deleteRow('dataTable')"><bean:message key="deleteRow" /></button>
 	<html:submit property="method" ><bean:message key="button.save" /></html:submit>
 </div>
 </nested:notEmpty>	

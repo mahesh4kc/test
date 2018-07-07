@@ -1,6 +1,9 @@
 package com.bank.form;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.sql.SQLException;
+import java.util.Properties;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -17,6 +20,7 @@ public class LoginForm extends BaseForm{
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	
 	public String getShopName() {
 		return shopName;
 	}

@@ -22,9 +22,30 @@ $(function() {
 $(document).ready(function() {
 	$("#form1").validationEngine()
 });
+
+$(document).keydown(function(e){                                 
+     //alert(code);
+     if(e.ctrlKey){
+      var code = e.which || e.keyCode;
+      switch ( code )
+     {
+                    case 114:
+                   	  $('form#form1').attr({action: 'billRedemption.do?method=REDEM'});                                              
+                         $('form#form1').submit();
+                      return false;
+                      case 82:
+                   	   $('form#form1').attr({action: 'billRedemption.do?method=REDEM'});                                              
+                          $('form#form1').submit();
+                      return false;
+                    default:
+                      break;
+      }
+     } 
+         });
 </script>
 <script type="text/javascript" src="<%=request.getContextPath()%>/include/js/bill.js"></script>
 <script>
+
 
 
 var DateDiff = {
@@ -73,13 +94,14 @@ function loadRedemInterestAndTotal() {
 				year2 = value2.substring (value2.lastIndexOf ("/")+1, value2.length); 				
 				start = new Date(month1+"/"+day1+"/"+year1)
 				end = new Date(month2+"/"+day2+"/"+year2)
-				var diffMonths = DateDiff.inMonths(start,end);
+				var diffMonths = DateDiff.inMonths(start,end);				
+				//alert(diffMonths);
 				if(( (day1 == day2 && month1 != month2 && year1 == year2) || (day1 == day2 && month1 == month2 && year1 != year2) 
 						|| (day1 == day2 && month1 != month2 && year1 != year2)				)){
 					//alert("sameDate");
 					diffMonths = diffMonths -1;
 				}
-				noOfMonths = diffMonths;
+				noOfMonths = (diffMonths+1);
 				if(noOfMonths > 0){
 					interest = (parseInt(principal * noOfMonths * rateOfInterest ) / 100)  ;
 					totalRedemption = ( parseInt(principal) +  (parseInt(principal * noOfMonths * rateOfInterest ) / 100) );
@@ -95,7 +117,7 @@ function loadRedemInterestAndTotal() {
 </script>
 
 </head>
-<body onload="billOnBodyLoad('<%=request.getContextPath()%>');">
+<body onload="billOnBodyLoad('<%=request.getContextPath()%>','BR');">
 <html:form action="billRedemption" method="POST" styleId="form1">
 <div align="center" class="shopDetails" ><bean:write name="billForm" property="shopDetails"/> </div>
 <div align="right">User : <bean:write name="billForm" property="userLoggedIn"/> </div>
@@ -114,7 +136,7 @@ function loadRedemInterestAndTotal() {
 	<td> Redemption Date</td>
 	<td>
 		<html:text name="billForm" property="billHeaderBO.redemptionDate" 
-		styleClass="validate[required,custom[dateIndianFormat]]"
+		styleClass="validate[required]"
 		onfocus="showCalendarControl(this);" onblur="checkdate(this);loadRedemInterestAndTotal();" maxlength="10" styleId="redemptionDate"></html:text>
 	</td>
 

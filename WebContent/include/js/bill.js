@@ -24,14 +24,23 @@ var valid_date = validateDate(obj.value,'J','F');
 alert(valid_date);
 }
 
-function billOnBodyLoad(context){
+function billOnBodyLoad(context,billSource){
 	contextName = context;
-	bodyOnLoad('customerNames');
+	billAndBillRedemptionFocus(billSource);		
 	loadDistinctSerial(contextName);
 	loadDistinctSerialNo();
 	loadCustomer(contextName);
 	//passing default row counts
 	loadProductDescriptions(contextName);   
+}
+
+//For bill focus should be on customer name
+//For bill redemption it has to be on bill number and after search it has to be on redemption date
+function billAndBillRedemptionFocus(billSource){
+	billSource == "BM" ? bodyOnLoad('customerNames') : 
+		((document.getElementById("amount").value != null && document.getElementById("amount").value > 0 ) ? 
+					bodyOnLoad('redemptionDate') : bodyOnLoad('billNumber'));
+	
 }
 
  function ValGrams(){  

@@ -16,6 +16,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.bank.util.BankConstant;
+import com.bank.util.PropertyUtil;
 
 public class SessionFilter implements Filter {
 
@@ -35,7 +36,9 @@ public class SessionFilter implements Filter {
 		String url = request.getServletPath();
 		boolean allowedRequest = false;
 		try{
-
+			if(PropertyUtil.getProperties() == null){
+				PropertyUtil.loadPropertiesOutsideWar();
+			}
 
 			for(int i=0; i<totalURLS; i++) {
 				if(url.contains(urlList.get(i))) {
@@ -72,30 +75,23 @@ public class SessionFilter implements Filter {
 		totalURLS = urlList.size();
 	}
 
+	/**
+	 * Set the default response content type and encoding
+	 */
 	private void setResponseHeader(HttpServletResponse response){
 		response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate"); // HTTP 1.1.     
 		response.setHeader("Pragma", "no-cache"); // HTTP 1.0.     
-		response.setDateHeader("Expires", 0); // Proxies.
-
-		/**
-		 * Set the default response content type and encoding
-		 */
+		response.setDateHeader("Expires", 0); // Proxies.	
 		response.setContentType("text/html; charset=" + BankConstant.CHARACTER_ENCODING);
 		response.setCharacterEncoding(BankConstant.CHARACTER_ENCODING);
 
 	}
 
 
+	/**
+	 * Set the default request content type and encoding
+	 */
 	private void setRequestEncoding(HttpServletRequest request) throws UnsupportedEncodingException{
-
-		/**
-		 * Set the default request content type and encoding
-		 */
-
 		request.setCharacterEncoding(BankConstant.CHARACTER_ENCODING);
-
-
-
-
 	}
 }

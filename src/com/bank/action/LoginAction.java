@@ -1,8 +1,11 @@
 package com.bank.action;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Properties;
 
 import javax.mail.MessagingException;
 import javax.mail.internet.AddressException;
@@ -22,6 +25,7 @@ import com.bank.helper.ParameterHelper;
 import com.bank.successmessage.SuccessMessage;
 import com.bank.util.BankConstant;
 import com.bank.util.LogMethods;
+import com.bank.util.PropertyUtil;
 import com.bank.util.SendMail;
 
 public class LoginAction extends SuccessMessage{
@@ -46,7 +50,7 @@ public class LoginAction extends SuccessMessage{
 	    } 
 	
 	public ActionForward login(ActionMapping mapping, ActionForm form,HttpServletRequest request,
-			HttpServletResponse response) throws SQLException{
+			HttpServletResponse response) throws SQLException, IOException{
 		String methodName="login";
 		
 		//logger.info("login starts");
@@ -59,7 +63,8 @@ public class LoginAction extends SuccessMessage{
 		}else{
 			ActionErrors errors=null;			
 			UserAuthenticationBO userAuthenticationBO=null;			
-			LoginForm loginForm = (LoginForm)form;			
+			LoginForm loginForm = (LoginForm)form;	
+			
 			UserAuthenticationDAO  userAuthenticationDAO = 
 			new UserAuthenticationDAO(BankConstant.DEFAULT_DATABASE_NAME);
 					//(UserAuthenticationDAO) getWebApplicationContext().getBean("customerBo");
@@ -279,5 +284,6 @@ public class LoginAction extends SuccessMessage{
 					HttpServletResponse response) throws SQLException{
 				return mapping.findForward("success");
 			}	 
-		
+
+		 
 }
