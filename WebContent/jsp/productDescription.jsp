@@ -12,12 +12,38 @@
 
 <title><bean:message key="label.productDescription.title" />  </title>
 <script type="text/javascript">
-
+$(document).keydown(function(e){                                 
+    //alert(code);
+    if(e.ctrlKey){
+     var code = e.which || e.keyCode;
+     switch ( code )
+    {
+                   case 115:
+                  	  $('form#form1').attr({action: 'productDescription.do?method=SAVE'});                                              
+                        $('form#form1').submit();
+                     return false;
+                     case 83:
+                  	   $('form#form1').attr({action: 'productDescription.do?method=SAVE'});                                              
+                         $('form#form1').submit();
+                     return false;
+                     case 99:
+                     	  $('form#form1').attr({action: 'productDescription.do?method=CLEAR'});                                              
+                           $('form#form1').submit();
+                        return false;
+   					case 67:
+                     	   $('form#form1').attr({action: 'productDescription.do?method=CLEAR'});                                              
+                            $('form#form1').submit();
+                        return false;
+                   default:
+                     break;
+     }
+    } 
+        });
 </script>
 </head>
 <body  onload="bodyOnLoad('productDescription');">
 
-<html:form action="productDescription" method="POST">
+<html:form action="productDescription" method="POST" styleId="form1">
 <div align="center" class="shopDetails" ><bean:write name="productDescriptionForm" property="shopDetails"/> </div>
 <div align="right">User : <bean:write name="productDescriptionForm" property="userLoggedIn"/> </div>
 

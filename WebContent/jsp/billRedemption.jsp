@@ -47,6 +47,7 @@ $(document).keydown(function(e){
 <script>
 
 
+
 var DateDiff = {
 		   
 	    inDays: function(d1, d2) {
@@ -115,7 +116,7 @@ function loadRedemInterestAndTotal() {
 </script>
 
 </head>
-<body onload="billOnBodyLoad('<%=request.getContextPath()%>');">
+<body onload="billOnBodyLoad('<%=request.getContextPath()%>','BR');">
 <html:form action="billRedemption" method="POST" styleId="form1">
 <div align="center" class="shopDetails" ><bean:write name="billForm" property="shopDetails"/> </div>
 <div align="right">User : <bean:write name="billForm" property="userLoggedIn"/> </div>
