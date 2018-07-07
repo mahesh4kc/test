@@ -34,7 +34,7 @@
                          "regex":"/^[0-9]{4}\-\[0-9]{1,2}\-\[0-9]{1,2}$/",
                          "alertText":"* Invalid date, must be in YYYY-MM-DD format"},
                     "dateIndianFormat":{
-                             "regex":"/^[0-9]{1,2}\\/\[0-9]{1,2}\\/\[0-9]{4}$/",
+                             "regex":"/^[0-9]{1,2}\-\[0-9]{1,2}\-\[0-9]{4}$/",
                              "alertText":"* Invalid date, must be in DD/MM/YYYY format"},
 					"onlyNumber":{
 						"regex":"/^[0-9\ ]+$/",

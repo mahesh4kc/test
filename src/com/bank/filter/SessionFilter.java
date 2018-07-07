@@ -75,30 +75,23 @@ public class SessionFilter implements Filter {
 		totalURLS = urlList.size();
 	}
 
+	/**
+	 * Set the default response content type and encoding
+	 */
 	private void setResponseHeader(HttpServletResponse response){
 		response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate"); // HTTP 1.1.     
 		response.setHeader("Pragma", "no-cache"); // HTTP 1.0.     
-		response.setDateHeader("Expires", 0); // Proxies.
-
-		/**
-		 * Set the default response content type and encoding
-		 */
+		response.setDateHeader("Expires", 0); // Proxies.	
 		response.setContentType("text/html; charset=" + BankConstant.CHARACTER_ENCODING);
 		response.setCharacterEncoding(BankConstant.CHARACTER_ENCODING);
 
 	}
 
 
+	/**
+	 * Set the default request content type and encoding
+	 */
 	private void setRequestEncoding(HttpServletRequest request) throws UnsupportedEncodingException{
-
-		/**
-		 * Set the default request content type and encoding
-		 */
-
 		request.setCharacterEncoding(BankConstant.CHARACTER_ENCODING);
-
-
-
-
 	}
 }

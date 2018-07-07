@@ -2,7 +2,7 @@
 <%@taglib uri="/WEB-INF/struts-html.tld" prefix="html" %>
 <%@taglib uri="/WEB-INF/struts-logic.tld" prefix="logic" %>
 <%@taglib uri="/WEB-INF/struts-nested.tld" prefix="nested" %>
-
+<script type="text/javascript" src="<%=request.getContextPath()%>/include/js/dateValidation.js"></script>
 
 <table>
 <tr>
@@ -19,7 +19,7 @@
 	<td>Bill Date </td>
 	<td>
 		<html:text  name="billForm" property="billHeaderBO.billDate" styleId="billDate" 
-		styleClass="validate[required,custom[dateIndianFormat]]"
+		styleClass="validate[required]"
 		onfocus="showCalendarControl(this);" onblur="checkdate(this);" maxlength="10"></html:text>
 	</td>
 </tr>
