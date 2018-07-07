@@ -76,7 +76,7 @@ public class BankConstant {
 	public static final String BILL_UPDATE = "BILL_UPDATE";
 	
 	/** The resulting PDF file. */
-	public static final String SUPPORT_MAIL_ID = "jewelbankers@gmail.com";
+	public static final String SUPPORT_MAIL_ID = "support@jewelbankers.com";
 	
 	public static final String FROM = "From";
 	

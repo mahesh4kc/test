@@ -6,6 +6,14 @@ http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
 	<!-- bean id="userAuthenticationDAO" class="com.bank.dao.UserAuthenticationDAO" >
    	</bean-->
  
- <import resource="jewelbankers-spring-scheduler.xml"/>
+ <!-- import resource="jewelbankers-spring-scheduler.xml"/ 
 
+<context:property-placeholder location='database.properties'/>
+
+	<bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer"> 
+		<property name="location">
+			<value>jewelbankers.properties</value>
+		</property>
+	</bean>
+-->
 </beans>

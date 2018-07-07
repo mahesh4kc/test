@@ -5,7 +5,13 @@
 <meta name='KEYWORDS' CONTENT='photo, gallery, album, collection'>
 <meta name='TITLE' CONTENT='MY PHOTO GALLERY'>
 <link rel=stylesheet type="text/css" href="./include/css/interestCalculator.css">
+<jsp:include page="includeCSS.jsp"></jsp:include>
+<jsp:include page="includeJS.jsp"></jsp:include>
 <script type="text/javascript" >
+$(function() {
+	  $( "input[type=submit], a, button" )
+	    .button()
+	});
 var DateDiff = {
        
       inDays: function(d1, d2) {

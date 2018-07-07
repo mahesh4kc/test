@@ -9,9 +9,18 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Bill Maintenance</title>
-<jsp:include page="includeCalendarJS.jsp"></jsp:include>
 <script type="text/javascript" src="<%=request.getContextPath()%>/include/js/bill.js"></script>
 <script type="text/javascript">
+
+$(function() {
+    $( "#billDate" ).datepicker
+    ({
+    	dateFormat: "dd/mm/yy",
+    		changeMonth: true,
+    	      changeYear: true
+      });
+  });
+ 
 $(document).ready(function() {
 	$("#form1").validationEngine()
 });
@@ -28,8 +37,8 @@ $(document).ready(function() {
 	<logic:equal name="billForm" property="billDeleteButtonFlag" value="Y">
 	<html:submit property="method" ><bean:message key="button.delete" /></html:submit>
 	</logic:equal>
-	<input type="button" value="Add Row" onclick="addRow('dataTable');loadProductDescriptions();"/>
-	<input type="button" value="Delete Row" onclick="deleteRow('dataTable');"/>
+	<button type="button" onclick="addRow('dataTable');loadProductDescriptions();">Add Row</button>
+	<button type="button" onclick="deleteRow('dataTable');">Delete Row</button>
 </div>
 <jsp:include page="htmlError.jsp"></jsp:include>
 <jsp:include page="billCommon.jsp"></jsp:include>
