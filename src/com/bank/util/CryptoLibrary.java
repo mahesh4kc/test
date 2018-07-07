@@ -92,12 +92,12 @@ public class CryptoLibrary
                 try
                 {
                 CryptoLibrary cl = new CryptoLibrary();
-                String user = "mail.jewelbankers.comXj".toUpperCase().trim();
+                String user = "PCHANDRA".toUpperCase().trim();
                 String pass = "jewelbankers";
                 String euser = cl.encrypt(user);
                 String epass = cl.encrypt(pass);
-                String duser = cl.decrypt("v1NT/KT8Smpamcpp6zzY8Q==");
-                String dpass = cl.decrypt("WmpfivQii8ksKIWPRdKn/w==");
+                String duser = cl.decrypt("v2VyCHVNdUnflV2pR1waHg==");
+                String dpass = cl.decrypt("9f/uDU6BhdHZ4o6Ftgd6gw==");
                 System.out.println("euser: " + " --> " + euser );
                 System.out.println("epass: " + " --> " + epass );
                 System.out.println("duser" + " --> " + duser );

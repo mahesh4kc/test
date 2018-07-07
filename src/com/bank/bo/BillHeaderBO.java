@@ -27,8 +27,14 @@ public class BillHeaderBO implements Comparable<BillHeaderBO>{
 	
 	private String billRedemSerial;
 	private Integer billRedemNumber;
+	private String comments;
 	
-	
+	public String getComments() {
+		return comments;
+	}
+	public void setComments(String comments) {
+		this.comments = comments;
+	}
 	public String getBillRedemSerial() {
 		return this.billRedemSerial;
 	}

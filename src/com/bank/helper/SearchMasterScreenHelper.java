@@ -78,8 +78,11 @@ public class SearchMasterScreenHelper {
 			
 		}			
 		searchMasterScreenBO.setSearch5(billHeaderBO.getAmount().toString());
-		searchMasterScreenBO.setSearch6(getProductDescription(billSequence, billDetailList) + " ( "+
-										(billHeaderBO.getStatusDescription()+ " ) "));	
+		StringBuffer productDescStatusComments = new StringBuffer(getProductDescription(billSequence, billDetailList));
+		productDescStatusComments.append(" ( " + billHeaderBO.getStatusDescription() + " ) " );
+		productDescStatusComments.append(billHeaderBO.getComments() != null && billHeaderBO.getComments().length() > 0 ? " ( " + billHeaderBO.getComments() + " ) " : "");
+		
+		searchMasterScreenBO.setSearch6(productDescStatusComments.toString());
 		searchMasterScreenBO.setSearch7(billHeaderBO.getRedemptionDate() != null && 
 				billHeaderBO.getRedemptionDate().length() > 0 ? billHeaderBO.getRedemptionDate() : ""); 
 		searchMasterScreenBO.setSearch8(
@@ -95,6 +98,7 @@ public class SearchMasterScreenHelper {
 		StringBuffer productDescription = new StringBuffer("");		
 		for (BillDetailBO billDetailBO : billDetailList){
 			if(billSequence.intValue() == billDetailBO.getBillSequence().intValue()){
+				productDescription.append(billDetailBO.getProductQuantity() != null  && billDetailBO.getProductQuantity() > 0 ? billDetailBO.getProductQuantity() + " " : "");
 				productDescription.append(billDetailBO.getProductDescription());
 				productDescription.append(" ; ");
 			}			

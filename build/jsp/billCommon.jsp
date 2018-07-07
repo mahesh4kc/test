@@ -38,7 +38,7 @@
 	<tr>
 	<td> Customer Address</td>
 	<td>		
-		<html:textarea name="billForm"  property="customerAddress" rows="4" cols="25" readonly="true" styleId="customerAddress"></html:textarea>			
+		<html:text name="billForm"  property="customerAddress" size="59" readonly="true" styleId="customerAddress"></html:text>			
 	</td>
 	<td> Care of</td>
 	<td>
@@ -61,34 +61,24 @@
 		styleClass="validate[required,custom[onlyNumber]]" 
 		onblur="amountInCompleteWords();calculatePresentValue();" ></html:text>
 	</td>
-
-	<td>Amount in Words</td>
+<td>Total Grams</td>
 	<td>
-		<html:text name="billForm" maxlength="50" property="billHeaderBO.amountInWords" size="50" styleId="amountInWords"></html:text>
-	</td>
+		<html:text name="billForm" maxlength="7" property="billHeaderBO.grams" styleId="grams" onblur="ValNumber()"></html:text>
+	</td>	
 </tr>
 
 <tr>
-	<td>Total Grams</td>
-	<td>
-		<html:text name="billForm" maxlength="7" property="billHeaderBO.grams" styleId="grams" onblur="ValNumber()"></html:text>
-	</td>
-
 	<td>Present Value</td>
 	<td>
 		<html:text name="billForm"  maxlength="10"  property="billHeaderBO.presentValue" styleId="presentValue" ></html:text>
 	</td>
-</tr>
-<tr>
-	<td> Monthly Income</td>
-	<td>
-		<html:text name="billForm"  maxlength="10" property="billHeaderBO.monthlyIncome" styleId="monthlyIncome" ></html:text>
-	</td>
-
 	<td>Rate Of Interest</td>
 	<td>
 		<html:text name="billForm"  maxlength="7"  property="billHeaderBO.rateOfInterest" styleId="rateOfInterest"></html:text>
 	</td>
+</tr>
+<tr>
+	
 </tr>
 <tr>
 	<td> <h4>Item Description</h4></td>
@@ -111,11 +101,35 @@
 <tr>
 	<td><nested:checkbox property="checked" ></nested:checkbox></td>	
 	<td><nested:hidden property="productNumber" ></nested:hidden></td>	
-	<td><nested:text property="productQuantity" maxlength="1" size="7"></nested:text></td>	
+	<td><nested:text property="productQuantity" maxlength="2" size="7"></nested:text></td>	
 	<td><nested:text property="productDescription" maxlength="1000" size="90" styleId="productDescriptions0" styleClass="ac_input"></nested:text></td>
 	
 </tr>
-</nested:iterate>	
+</nested:iterate>
+
+</table>
+
+<table>
+<tr>
+<tr>
+	<td><h3>Bill Additional Details</h3></td>
+</tr>
+<tr>
+<td>Amount in Words</td>
+	<td>
+		<html:text name="billForm" maxlength="50" property="billHeaderBO.amountInWords" size="50" styleId="amountInWords"></html:text>
+	</td>
+<td> Monthly Income</td>
+	<td>
+		<html:text name="billForm"  maxlength="10" property="billHeaderBO.monthlyIncome" styleId="monthlyIncome" ></html:text>
+	</td>
+</tr>
+<tr>
+	<td> Comments</td>
+	<td colspan="3">
+		<html:text name="billForm"  maxlength="250"  size="109" property="billHeaderBO.comments" styleId="comments" ></html:text>
+	</td>
+</tr>	
 </table>
 <div id="billSerialDiv" style="display:none"></div>
 <div id="billSerialNoDiv" style="display:none"></div>

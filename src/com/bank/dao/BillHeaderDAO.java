@@ -21,21 +21,21 @@ public class BillHeaderDAO extends BankDAO{
 		
 	public static final String CREATE_BILL_HEADER = "INSERT INTO BILL_HEADER " +
 	" (BILL_SEQUENCE, BILL_SERIAL, BILL_NO, BILL_DATE, CUSTOMERID, CAREOF,  PRODUCT_TYPE_NO,  RATE_OF_INTEREST,  AMOUNT,  AMOUNT_IN_WORDS, " +
-	"  PRESENT_VALUE,  GRAMS,  MONTHLY_INCOME,REDEMPTION_DATE,REDEMPTION_INTEREST,REDEMPTION_TOTAL,REDEMPTION_STATUS) " +
-	"  VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,? )";
+	"  PRESENT_VALUE,  GRAMS,  MONTHLY_INCOME,REDEMPTION_DATE,REDEMPTION_INTEREST,REDEMPTION_TOTAL,REDEMPTION_STATUS,COMMENTS) " +
+	"  VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,? )";
 	
 	public static final String UPDATE_BILL_HEADER = "UPDATE BILL_HEADER SET BILL_SERIAL = ?, " +
 	" BILL_NO = ?, BILL_DATE =?, CUSTOMERID =? , CAREOF =?, PRODUCT_TYPE_NO = ?, RATE_OF_INTEREST =? " +
 	", AMOUNT =?, AMOUNT_IN_WORDS = ?, PRESENT_VALUE =?, GRAMS =?, MONTHLY_INCOME = ? " +
 	", REDEMPTION_DATE =?, REDEMPTION_INTEREST = ?, REDEMPTION_TOTAL =?, REDEMPTION_STATUS =? " +
-	", BILL_REDEM_SERIAL = ? , BILL_REDEM_NO = ? WHERE BILL_SEQUENCE = ?";
+	", BILL_REDEM_SERIAL = ? , BILL_REDEM_NO = ?, COMMENTS = ? WHERE BILL_SEQUENCE = ?";
 	
 	public static final String DELETE_BILL_HEADER = "DELETE FROM BILL_HEADER WHERE BILL_SEQUENCE = ?";
 	
 	public static final String SELECT_ALL_BILL_HEADER = "SELECT " +
     " BILL_SEQUENCE, BILL_SERIAL, BILL_NO, BILL_DATE, CUSTOMERID, CAREOF, PRODUCT_TYPE_NO, RATE_OF_INTEREST, " +
     " AMOUNT, AMOUNT_IN_WORDS, PRESENT_VALUE, GRAMS, MONTHLY_INCOME,REDEMPTION_DATE,REDEMPTION_INTEREST,REDEMPTION_TOTAL,REDEMPTION_STATUS, " +
-    " BILL_REDEM_SERIAL,BILL_REDEM_NO FROM BILL_HEADER ";
+    " BILL_REDEM_SERIAL,BILL_REDEM_NO,COMMENTS FROM BILL_HEADER ";
 	public static final String SELECT_BILL_HEADER_BY_BILL_SEQUENCE =  SELECT_ALL_BILL_HEADER +
 																		FilterClausesConstant.WHERE + " BILL_SEQUENCE " + FilterClausesConstant.EQUAL + " ? ";
 	
@@ -169,6 +169,8 @@ public class BillHeaderDAO extends BankDAO{
 						 (billHeaderBO.getRedemptionTotal()!=null?billHeaderBO.getRedemptionTotal():0.0));
 				 objPreparedStatement.setString(17, 
 						 (billHeaderBO.getRedemptionStatus()!=null?billHeaderBO.getRedemptionStatus().toUpperCase():"O"));							 
+				 objPreparedStatement.setString(18, 
+						 (billHeaderBO.getComments()!=null?billHeaderBO.getComments().toUpperCase():""));
 			 }					
 			 
 		 noOfInsertedRecords = objPreparedStatement.executeUpdate();
@@ -220,8 +222,10 @@ public class BillHeaderDAO extends BankDAO{
 						 (billHeaderBO.getBillRedemSerial()!=null?billHeaderBO.getBillRedemSerial().toUpperCase():""));
 				 objPreparedStatement.setInt(18, 
 						 (billHeaderBO.getBillRedemNumber()!=null?billHeaderBO.getBillRedemNumber():0));
+				 objPreparedStatement.setString(19, 
+						 (billHeaderBO.getComments()!=null?billHeaderBO.getComments():""));
 				 //Primary key
-				 objPreparedStatement.setInt(19, billHeaderBO.getBillSequence());
+				 objPreparedStatement.setInt(20, billHeaderBO.getBillSequence());
 			 }			 
 			 noOfInsertedRecords = objPreparedStatement.executeUpdate(); 
 		}

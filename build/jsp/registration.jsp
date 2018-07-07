@@ -7,14 +7,21 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <jsp:include page="includeJS.jsp"></jsp:include>
+
 <script type="text/javascript">
 function bodyOnLoad(){
 	document.getElementById("loginID").focus();
 }
 	
-$(document).ready(function() {
-	$("#form1").validationEngine()
+
+jQuery(document).ready(function(){
+	// binds form submission and fields to the validation engine
+	jQuery("#form1").validationEngine();
 });
+
+
+
+
 
 
 </script>	
@@ -35,7 +42,8 @@ $(document).ready(function() {
 		</label></td>
 		<td WIDTH="10%">
 			<html:text property="loginID" size="25" maxlength="15" styleId="loginID" 
-			styleClass="validate[required,length[6,15],custom[noSpecialCharactersForUserId]]" onfocus="true"></html:text>		
+			styleClass="validate[required,minSize[6]] text-input" onfocus="true"></html:text>	
+			<input value="" class="validate[required,minSize[6]] text-input" type="text" name="minsize" id="minsize" />	
 		</td>
 		
 	</tr>
