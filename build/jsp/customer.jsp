@@ -19,6 +19,50 @@ $('.keyup-customerID').keyup(function() {
         $(this).after('<span class="error error-keyup-2">No special characters allowed.</span>');
     }
 });
+$(document).keydown(function(e){                                 
+    //alert(code);
+    if(e.ctrlKey){
+     var code = e.which || e.keyCode;
+     switch ( code )
+    {
+                   case 115:
+                  	  $('form#form1').attr({action: 'customer.do?method=CREATE'});                                              
+                        $('form#form1').submit();
+                     return false;
+                     case 83:
+                  	   $('form#form1').attr({action: 'customer.do?method=CREATE'});                                              
+                         $('form#form1').submit();
+                     return false;
+                     case 117:
+                     	  $('form#form1').attr({action: 'customer.do?method=UPDATE'});                                              
+                           $('form#form1').submit();
+                        return false;
+                    case 85:
+                     	   $('form#form1').attr({action: 'customer.do?method=UPDATE'});                                              
+                            $('form#form1').submit();
+                        return false;
+                    /*case 100:
+                        	  $('form#form1').attr({action: 'customer.do?method=DELETE'});                                              
+                              $('form#form1').submit();
+                           return false;
+					case 68:
+                        	   $('form#form1').attr({action: 'customer.do?method=DELETE'});                                              
+                               $('form#form1').submit();
+                           return false;*/
+					case 99:
+                  	  $('form#form1').attr({action: 'customer.do?method=CLEAR'});                                              
+                        $('form#form1').submit();
+                     return false;
+					case 67:
+                  	   $('form#form1').attr({action: 'customer.do?method=CLEAR'});                                              
+                         $('form#form1').submit();
+                     return false;
+                   default:
+                     break;
+     }
+    } 
+        });
+
 function openCustomerChildWindow(contextName){
 //var href = "/bank/jsp/searchMasterScreens.jsp?method=search";
 var href = contextName+"/searchMasterScreen.do?method=SEARCH&searchTableDetails=C";
@@ -26,7 +70,7 @@ window.open(href,'','target="_parent"');
 }</script>
 </head>
 <body  onload="bodyOnLoad('customerNames');loadCustomer('<%=request.getContextPath()%>');">
-<html:form action="customer" method="POST" >
+<html:form action="customer" method="POST" styleId="form1">
 <div align="center" class="shopDetails" ><bean:write name="customerForm" property="shopDetails"/> </div>
 <div align="right">User : <bean:write name="customerForm" property="userLoggedIn"/> </div>
 <jsp:include page="htmlError.jsp"></jsp:include>

@@ -153,6 +153,8 @@ public class BillAction extends SuccessMessage{
 			 search(mapping, form, request, response);
 			 
 			 setSuccessMessage("success.billRedemed", request);
+			 
+			 clear(mapping, billForm, request, response);
 			
 		//}
 		return mapping.findForward("success");

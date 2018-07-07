@@ -24,9 +24,36 @@ $(function() {
 $(document).ready(function() {
 	$("#form1").validationEngine()
 });
+$(document).keydown(function(e){                                 
+    //alert(code);
+    if(e.ctrlKey){
+     var code = e.which || e.keyCode;
+     switch ( code )
+    {
+                   case 115:
+                  	  $('form#form1').attr({action: 'bill.do?method=SAVE'});                                              
+                        $('form#form1').submit();
+                     return false;
+                     case 83:
+                  	   $('form#form1').attr({action: 'bill.do?method=SAVE'});                                              
+                         $('form#form1').submit();
+                     return false;
+                     case 99:
+                     	  $('form#form1').attr({action: 'bill.do?method=CLEAR'});                                              
+                           $('form#form1').submit();
+                        return false;
+   					case 67:
+                     	   $('form#form1').attr({action: 'bill.do?method=CLEAR'});                                              
+                            $('form#form1').submit();
+                        return false;
+                   default:
+                     break;
+     }
+    } 
+        });
 </script>
 </head>
-<body onload="billOnBodyLoad('<%=request.getContextPath()%>');">
+<body onload="billOnBodyLoad('<%=request.getContextPath()%>','BM');">
 <html:form action="bill" method="POST" styleId="form1" >
 <div align="center" class="shopDetails" ><bean:write name="billForm" property="shopDetails"/> </div>
 <div align="right">User : <bean:write name="billForm" property="userLoggedIn"/> </div>
