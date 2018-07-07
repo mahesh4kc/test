@@ -22,6 +22,26 @@ $(function() {
 $(document).ready(function() {
 	$("#form1").validationEngine()
 });
+
+$(document).keydown(function(e){                                 
+     //alert(code);
+     if(e.ctrlKey){
+      var code = e.which || e.keyCode;
+      switch ( code )
+     {
+                    case 114:
+                   	  $('form#form1').attr({action: 'billRedemption.do?method=REDEM'});                                              
+                         $('form#form1').submit();
+                      return false;
+                      case 82:
+                   	   $('form#form1').attr({action: 'billRedemption.do?method=REDEM'});                                              
+                          $('form#form1').submit();
+                      return false;
+                    default:
+                      break;
+      }
+     } 
+         });
 </script>
 <script type="text/javascript" src="<%=request.getContextPath()%>/include/js/bill.js"></script>
 <script>

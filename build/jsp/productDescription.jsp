@@ -11,6 +11,9 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 
 <title><bean:message key="label.productDescription.title" />  </title>
+<script type="text/javascript">
+
+</script>
 </head>
 <body  onload="bodyOnLoad('productDescription');">
 
@@ -61,8 +64,8 @@
 
 
 <div align="center">
-	<button type="button" onclick="addRow('dataTable')">Add Row</button>
-	<button type="button" onclick="deleteRow('dataTable')">Delete Row</button>
+	<button type="button" onclick="addRow('dataTable')"><bean:message key="addRow" /></button>
+	<button type="button" onclick="deleteRow('dataTable')"><bean:message key="deleteRow" /></button>
 	<html:submit property="method" ><bean:message key="button.save" /></html:submit>
 </div>
 </nested:notEmpty>	

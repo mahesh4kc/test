@@ -1,3 +1,5 @@
+<%@page import="com.bank.util.PropertyUtil"%>
+<%@page import="java.util.Properties"%>
 <%@page import="com.bank.util.BankConstant"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
@@ -22,8 +24,11 @@ function bodyOnLoad(){
 </head>
 <body onload="bodyOnLoad();ResetAllValue();">
 <jsp:include page="htmlError.jsp"></jsp:include>
-<html:form styleId="form1" action="login"  method="POST">
 
+<html:form styleId="form1" action="login"  method="POST">
+<%
+String jewelBankersDemoVideo = PropertyUtil.getProperties().getProperty("jewelBankersDemoVideo"); 
+%>
 
 <table style="width: 100%; ">
 <tr >
@@ -66,7 +71,7 @@ function bodyOnLoad(){
 	<html:link action="/forgot.do?method=CLEAR">Forgot Password</html:link>
 </div>
 <div align="right">	&nbsp;</div>
-<div align="right">	<label><B><label><a target="_blank" href="https://www.youtube.com/watch?v=BmOpD46eZoA">Watch Jewelbankers Demo </a></label></B></label></div>
+<div align="right">	<label><B><label><a target="_blank" href=<%=  jewelBankersDemoVideo %>>Watch Jewelbankers Demo </a></label></B></label></div>
 <div align="right">	&nbsp;</div>
 <div align="right">	<label> <U>To Use:</U> Login ID & Password is <U>jewelbankers</U></label></div>
 <div align="right">	&nbsp;</div>

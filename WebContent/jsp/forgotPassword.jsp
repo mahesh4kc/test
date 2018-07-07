@@ -12,6 +12,7 @@ function bodyOnLoad(){
 }
 </script>
 <jsp:include page="includeCSS.jsp"></jsp:include>
+<jsp:include page="includeJS.jsp"></jsp:include>
 <title><bean:message key="label.forgotpassword.title" /></title>
 </head>
 <body onload="bodyOnLoad();">

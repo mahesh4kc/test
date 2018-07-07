@@ -16,6 +16,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.bank.util.BankConstant;
+import com.bank.util.PropertyUtil;
 
 public class SessionFilter implements Filter {
 
@@ -35,7 +36,9 @@ public class SessionFilter implements Filter {
 		String url = request.getServletPath();
 		boolean allowedRequest = false;
 		try{
-
+			if(PropertyUtil.getProperties() == null){
+				PropertyUtil.loadPropertiesOutsideWar();
+			}
 
 			for(int i=0; i<totalURLS; i++) {
 				if(url.contains(urlList.get(i))) {

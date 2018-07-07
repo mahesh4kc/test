@@ -81,9 +81,9 @@
   </init-param> 
   <init-param>
     <param-name>application</param-name>
-        <param-value>ApplicationResources</param-value>
+    <param-value>ApplicationResources</param-value>
   </init-param> 
-
+  
   <init-param>
     <param-name>debug</param-name>
     <param-value>3</param-value>
