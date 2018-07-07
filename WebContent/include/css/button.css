@@ -1,0 +1,19 @@
+.input {
+    border: 1px solid #006;
+    background: #ffc;
+}
+.button {
+	border: 1px solid #f00;
+    background: #ff6;  
+}
+.input:hover {
+     color: #000;
+	background: #ffa20f;
+	border: 2px outset #d7b9c9
+}
+.button:hover {
+    border: 1px solid #f00;
+    background: black;
+    color : red ;
+    cursor: hand ;
+}

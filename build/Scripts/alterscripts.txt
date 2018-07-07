@@ -1,0 +1,82 @@
+alter table customer add column RelationShip char(1);
+alter table customer add column RelationName varchar(50);
+
+update customer set RelationShip = 'W'
+update customer set RelationName = 'W'
+
+SELECT * FROM BILL_DETAIL WHERE PRODUCT_DESCRIPTION LIKE '%' AND BILL_SEQUENCE IN
+(SELECT BILL_SEQUENCE FROM BILL_HEADER WHERE BILL_NO LIKE '%' AND BILL_DATE LIKE '%' 
+AND REDEMPTION_STATUS   LIKE '%' AND CUSTOMERID IN
+(SELECT CUSTOMERID FROM CUSTOMER WHERE CUSTOMERNAME LIKE '%'))
+
+alter table product_desc drop column PRODUCT_ID;
+alter table product_desc modify column PRODUCT_DESCRIPTION varchar(500)
+alter table bill_header add column BILL_REDEM_SERIAL CHAR(1);
+alter table bill_header add column BILL_REDEM_NO INT;
+ALTER TABLE BILL_HEADER ADD CONSTRAINT UNIQUE_BILL_SERIAL_NO UNIQUE (BILL_SERIAL,BILL_NO);
+alter table  user_authentication modify column USER_ID VARCHAR(200)
+alter table  user_authentication modify column USER_PASSWORD VARCHAR(200)
+
+alter table PARAMETERS add column PARAM_EXAMPLE VARCHAR (500);
+update parameters set PARAM_EXAMPLE=' ''A'' OR ''A'',''B'' ' where PARAM_ID='SEARCH_SERIALS'
+update parameters set PARAM_EXAMPLE='DD/MM/YYY' where PARAM_ID='REDEM_CURRENT_DATE'
+update parameters set PARAM_EXAMPLE='DD/MM/YYY' where PARAM_ID='CURRENT_DATE'
+
+insert into parameters values(21,'SHOP_NAME','D.BHAWARLAL CHOUDHARY','');
+insert into parameters values(22,'SHOP_NO','1524','');
+insert into parameters values(23,'SHOP_STREET','10TH WEST CROSS STREET','');
+insert into parameters values(24,'SHOP_AREA','M.K.B.NAGAR','');
+insert into parameters values(25,'SHOP_CITY','CHENNAI','');
+insert into parameters values(26,'SHOP_PINCODE','600039','');
+insert into parameters values(27,'SHOP_STATE','TAMILNADU','');
+insert into parameters values(28,'SEARCH_SERIALS','F','E','Z');
+insert into parameters values(29,'LICENCE_NO','P.B.L.NO 765/2010-2011','');
+insert into parameters values(30,'SEC_RULE','FROM F ''(SEC. 7 & RULE 8'')','');
+insert into parameters values(31,'PAWN_TICKET','PAWN_TICKET','');
+insert into parameters values(32,'PAWN_BROKER','PAWN BROKER','');
+insert into parameters values(33,'ROI_DETAILS','THE RATE OF INTEREST CHARGED AT 16% PER ANNUM','');
+insert into parameters values(34,'RED_DETAILS','TIME AGREE UPON FOR A REDEMPTION OF THE ARTICLE IS ONE YEAR','');
+insert into parameters values(35,'MONTHLY_INCOME_DETAILS','I PROMISE TO MY MONTHLY INCOME RS.','');
+insert into parameters values(36,'PAWNER_SIGN','SIG. OF PAWN BROKER/AGENT','');
+insert into parameters values(37,'CUSTOMER_SIGN','SIG. OF L.T.I. OF PAWNER','');
+insert into parameters values(38,'AUCTION_DETAILS','','');
+insert into parameters values(39,'BILL_DELETE','Y','Y');
+insert into parameters values(40,'REDEM_CURRENT_SERIAL','A','A');
+
+ALTER TABLE USER_AUTHENTICATION ADD COLUMN PHONE_NO BIGINT;
+ALTER TABLE USER_AUTHENTICATION ADD COLUMN LOCATION VARCHAR(50);
+ALTER TABLE USER_AUTHENTICATION ADD COLUMN LAST_NAME VARCHAR(50);
+ALTER TABLE USER_AUTHENTICATION ADD COLUMN SHOP_NAME VARCHAR(50);
+ALTER TABLE USER_AUTHENTICATION ADD COLUMN CREATE_DATE DATE;
+ALTER TABLE USER_AUTHENTICATION ADD COLUMN UPDATE_DATE DATE;
+
+
+
+DELETE FROM bill_detail;
+DELETE FROM bill_header;
+DELETE FROM  customer;
+DELETE FROM product_desc;
+DELETE FROM  product_type;
+
+RENAME TABLE parameters TO PARAMETERS;
+RENAME TABLE bill_detail TO BILL_DETAIL;
+RENAME TABLE bill_header TO BILL_HEADER;
+RENAME TABLE customer TO CUSTOMER;
+RENAME TABLE product_desc TO PRODUCT_DESC;
+RENAME TABLE product_type TO PRODUCT_TYPE;
+
+CREATE DATABASE thulasiram;
+
+RENAME TABLE thulasiramkag.PARAMETERS TO thulasiram.PARAMETERS;
+RENAME TABLE thulasiramkag.BILL_DETAIL TO thulasiram.BILL_DETAIL;
+RENAME TABLE thulasiramkag.BILL_HEADER TO thulasiram.BILL_HEADER;
+RENAME TABLE thulasiramkag.CUSTOMER TO thulasiram.CUSTOMER;
+RENAME TABLE thulasiramkag.PRODUCT_DESC TO thulasiram.PRODUCT_DESC;
+RENAME TABLE thulasiramkag.PRODUCT_TYPE TO thulasiram.PRODUCT_TYPE;
+
+
+26-0ct-2012
+ALTER TABLE parameters MODIFY PARAM_VALUE VARCHAR(2000) CHARACTER SET UTF8  COLLATE utf8_general_ci;
+ALTER TABLE parameters MODIFY PARAM_EXAMPLE VARCHAR(500) CHARACTER SET UTF8  COLLATE utf8_general_ci;
+
+insert into parameters values(41,'BILL_UPDATE','Y','Y');

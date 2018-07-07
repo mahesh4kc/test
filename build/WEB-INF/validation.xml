@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form-validation>          
+ <formset>
+        <!-- validation mappings -->
+        <form name="customerForm1">
+            <field 
+            	property="name"
+                depends="required, minlength">
+                	<arg key="exampleXMLForm.name" />
+                	<arg key="${var:minlength}" resource="false" />
+			        <var>
+			          <var-name>minlength</var-name>
+			          <var-value>3</var-value>
+			        </var>
+            </field>
+            <field
+                property="age"
+                depends="required, integer, validwhen">
+                    <arg key="exampleXMLForm.age"/>
+                    <arg name="validwhen" key="${var:min}" resource="false" />
+                    <var>
+			          <var-name>test</var-name>
+			          <var-value>(*this* > 18)</var-value>
+			        </var>
+            </field>
+        </form>
+    </formset>
+</form-validation>

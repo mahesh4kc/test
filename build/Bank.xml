@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Bank>
+	<Connection id="MySQLConnection">
+		<Driver>com.mysql.jdbc.Driver</Driver>
+		<Url>jdbc:mysql://localhost:3306/mysql</Url>
+		<DriverType>jdbc:mysql</DriverType>
+		<HostName>localhost</HostName>
+		<Port>3306</Port>
+		<Database>mysql</Database>
+		<UserName>root</UserName>
+		<Password>root</Password>
+	</Connection>
+</Bank>

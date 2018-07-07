@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+
+<!DOCTYPE struts-config PUBLIC
+          "-//Apache Software Foundation//DTD Struts Configuration 1.1//EN"
+          "http://jakarta.apache.org/struts/dtds/struts-config_1_1.dtd"> 
+
+
+<struts-config>
+  <!-- ========== Data Source Configuration =============================== 
+  <data-sources>
+   <data-source type="org.apache.commons.dbcp.BasicDataSource">
+     <set-property property="autoCommit" value="true" />
+     <set-property property="driverClassName" value="oracle.jdbc.driver.OracleDriver" />
+     <set-property property="url" value="jdbc:oracle:thin:@localhost:1521:oracle10" />
+     <set-property property="username" value="scott" />
+     <set-property property="password" value="tiger" />
+   </data-source>
+ </data-sources>
+-->
+  <!-- ========== Form Bean Definitions =================================== 
+-->
+	
+	
+  	<form-beans>
+    	
+        <form-bean      name="customerForm"
+        	            type="com.bank.form.CustomerForm"/>	
+        <form-bean      name="productTypeForm"
+        	            type="com.bank.form.ProductTypeForm"/>	
+        <form-bean      name="productDescriptionForm"
+        	            type="com.bank.form.ProductDescriptionForm"/>        	            
+        <form-bean      name="billForm"
+        	            type="com.bank.form.BillForm"/> 
+        <form-bean      name="searchMasterScreenForm"
+        	            type="com.bank.form.SearchMasterScreenForm"/>
+         <form-bean      name="loginForm"
+        	            type="com.bank.form.LoginForm"/>   
+         <form-bean      name="parameterForm"
+        	            type="com.bank.form.ParameterForm"/> 
+        <form-bean      name="backUpandRestoreMySqlForm"
+        	            type="com.bank.form.BackUpandRestoreMySqlForm"/> 	           
+        <form-bean      name="fileUploadForm"
+        	            type="com.bank.form.FileUploadForm"/> 	           
+        	                
+	</form-beans>
+	
+	<global-exceptions>
+	    <exception
+	      key="error.global.mesage"
+	      type="java.lang.IllegalStateException"
+	      path="/jsp/login.jsp" />
+	</global-exceptions>
+	
+	<action-mappings>
+	    <action    	path="/productType"
+    			   	type="com.bank.action.ProductTypeAction"
+      				scope="session"
+      				parameter="method"
+      				name="productTypeForm"
+      				validate="true"
+      				input="page.productType" >
+     				<forward name="success" path="page.productType" />     	
+    	</action>  
+    	 <action    	path="/productDescription"
+    			   	type="com.bank.action.ProductDescriptionAction"
+      				scope="session"
+      				parameter="method"
+      				name="productDescriptionForm"
+      				validate="true"
+      				input="page.productDescription" >
+     				<forward name="success" path="page.productDescription" />     	
+    	</action>    	
+	    <action    	path="/customer"
+    			   	type="com.bank.action.CustomerAction"
+      				scope="session"
+      				parameter="method"
+      				name="customerForm"
+      				validate="true"
+      				input="page.customer" >
+     				<forward name="success" path="page.customer" />     	
+    	</action>  
+    	 <action    path="/bill"
+    			   	type="com.bank.action.BillAction"
+      				scope="session"
+      				parameter="method"
+      				name="billForm"
+      				validate="true"
+      				input="page.bill" >
+     				<forward name="success" path="page.bill" />    	
+     				<forward name="failure" path="page.error" /> 
+     				<forward name="inValidSession" path="page.error" />   	
+    	</action>
+    	 <action    path="/billRedemption"
+    			   	type="com.bank.action.BillAction"
+      				scope="session"
+      				parameter="method"
+      				name="billForm"
+      				validate="true"
+      				input="page.billRedemption" >
+     				<forward name="success" path="page.billRedemption" />    	
+    	</action>
+    	 <action    path="/searchMasterScreen"
+    			   	type="com.bank.action.SearchMasterScreenAction"
+      				scope="session"
+      				parameter="method"
+      				name="searchMasterScreenForm"
+      				validate="true"
+      				input="page.searchMasterScreens" >
+     				<forward name="success" path="page.searchMasterScreens" />      				    	
+    	</action>
+    	
+    	   
+    	 <action    path="/login"
+    			   	type="com.bank.action.LoginAction"
+      				scope="session"
+      				parameter="method"
+      				name="loginForm"
+      				validate="true"
+      				input="page.login" >
+     				<forward name="success" path="page.home" />
+     				<forward name="same" path="page.login" />  				    	
+    	</action> 
+    	 <action    path="/changePassword"
+    			   	type="com.bank.action.LoginAction"
+      				scope="session"
+      				parameter="method"
+      				name="loginForm"
+      				validate="true"
+      				input="/jsp/changePassword.jsp" >
+     				<forward name="success" path="page.home" />
+     				<forward name="same" path="page.changePassword" />        				    	
+    	</action>  
+    	 <action    path="/parameters"
+    			   	type="com.bank.action.ParameterAction"
+      				scope="session"
+      				parameter="method"
+      				name="parameterForm"
+      				validate="true"
+      				input="page.parameters" >     				
+     				<forward name="success" path="page.parameters" />        				    	
+    	</action>     
+    	 <action    path="/fileDownloadAction"
+    			   	type="com.bank.action.BackUpandRestoreMySqlAction"
+      				scope="session"
+      				parameter="method"
+      				name="backUpandRestoreMySqlForm"
+      				validate="true"
+      				input="page.downloadFile" >     				
+     				<forward name="success" path="page.downloadFile" />        				    	
+    	</action>  
+    	 <action    path="/registration"
+    			   	type="com.bank.action.LoginAction"
+      				scope="session"
+      				parameter="method"
+      				name="loginForm"
+      				validate="true"
+      				input="page.registration" >
+     				<forward name="success" path="page.login" />
+     				<forward name="same" path="page.registration" />        				    	
+    	</action> 
+    	
+    	 <action    path="/forgot"
+    			   	type="com.bank.action.LoginAction"
+      				scope="session"
+      				parameter="method"
+      				name="loginForm"
+      				validate="true"
+      				input="page.forgotPassword" >
+     				<forward name="success" path="page.login" />
+     				<forward name="same" path="page.forgotPassword" />        				    	
+    	</action> 
+
+		<action    	path="/uploadFile"
+    			   	type="com.bank.action.FileUploadAction"
+      				scope="session"
+      				parameter="method"
+      				name="fileUploadForm"
+      				validate="true"
+      				input="page.uploadFile" >
+     				<forward name="success" path="page.uploadFile" />
+     				<forward name="login" path="page.login" />
+     	</action> 			    	 	
+  	</action-mappings>
+  	
+  
+	
+  	<plug-in className="org.apache.struts.tiles.TilesPlugin" >
+		<set-property property="definitions-config"
+		value="/WEB-INF/tiles-defs.xml"/>
+		<set-property property="moduleAware"
+		value="true"/>
+		<set-property property="definitions-parser-validate"
+		value="/WEB-INF/tiles-defs.xml"/>
+		
+	</plug-in>
+	
+	 <!-- Spring Struts plugin 
+ 	<plug-in className="org.springframework.web.struts.ContextLoaderPlugIn">
+		<set-property property="contextConfigLocation"
+			value="/config/spring/jewelbankers-spring-service.xml" />
+  	</plug-in>
+	    -->
+</struts-config>

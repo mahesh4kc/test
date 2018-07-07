@@ -1,0 +1,10 @@
+
+/*Credits: Dynamic Drive CSS Library */
+/*URL: http://www.dynamicdrive.com/style/ */
+
+.errors{
+	width: 100%;
+	font: bold 14px Verdana;
+	color : red ;
+	text-align: left;	
+}

@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+
+<web-app>
+
+<welcome-file-list>      
+        <welcome-file>/jsp/login.jsp</welcome-file>
+</welcome-file-list>
+
+  <resource-ref>
+      <description>THULASIRAM</description>
+      <res-ref-name>jdbc/THULASIRAM</res-ref-name>
+      <res-type>javax.sql.DataSource</res-type>
+      <res-auth>Container</res-auth>
+  </resource-ref>
+   <resource-ref>
+      <description>OMPRAKASH</description>
+      <res-ref-name>jdbc/OMPRAKASH</res-ref-name>
+      <res-type>javax.sql.DataSource</res-type>
+      <res-auth>Container</res-auth>
+  </resource-ref>
+   <resource-ref>
+      <description>GANESHJEWELLERS</description>
+      <res-ref-name>jdbc/GANESHJEWELLERS</res-ref-name>
+      <res-type>javax.sql.DataSource</res-type>
+      <res-auth>Container</res-auth>
+  </resource-ref>
+   <resource-ref>
+      <description>MYSQL</description>
+      <res-ref-name>jdbc/MYSQL</res-ref-name>
+      <res-type>javax.sql.DataSource</res-type>
+      <res-auth>Container</res-auth>
+  </resource-ref>
+  <security-constraint> 
+    <web-resource-collection> 
+      	<web-resource-name>card</web-resource-name> 
+	      <!-- Define the context-relative URL(s) to be protected --> 
+	      <url-pattern>/web/jsp/login.jsp</url-pattern> 
+	      <http-method>POST</http-method> 
+	      <http-method>GET</http-method>   
+      </web-resource-collection> 
+    <auth-constraint> 
+      <role-name>manager</role-name>       
+    </auth-constraint> 
+    <user-data-constraint>
+		<transport-guarantee>CONFIDENTIAL</transport-guarantee>
+	</user-data-constraint>	    
+  </security-constraint> 
+
+  <!-- Default login configuration uses form-based authentication --> 
+  
+	 
+<servlet>
+  <servlet-name>Hello</servlet-name>
+  <servlet-class>com.tspl.HelloWorld</servlet-class>  
+ </servlet>
+ <servlet-mapping>
+	 <servlet-name>Hello</servlet-name>
+	 <url-pattern>/HelloWorld</url-pattern>	   
+ </servlet-mapping>
+ <servlet>
+ <servlet-name>searchCustomer</servlet-name>
+  <servlet-class>com.bank.action.SearchCustomer</servlet-class>
+  </servlet>
+ 
+ 
+ 
+     <servlet>
+        <servlet-name>strutsdemo</servlet-name>
+        <servlet-class>org.apache.struts.action.ActionServlet</servlet-class>
+  <init-param>
+    <param-name>config</param-name>
+    <param-value>/WEB-INF/struts-config.xml</param-value>
+  </init-param> 
+  <init-param>
+    <param-name>application</param-name>
+        <param-value>ApplicationResources</param-value>
+  </init-param> 
+
+  <init-param>
+    <param-name>debug</param-name>
+    <param-value>3</param-value>
+  </init-param> 
+  <init-param>
+    <param-name>detail</param-name>
+    <param-value>2</param-value>
+  </init-param> 
+  <load-on-startup>2</load-on-startup>
+ </servlet>
+
+    <servlet-mapping>
+        <servlet-name>strutsdemo</servlet-name>
+        <url-pattern>*.do</url-pattern>
+   </servlet-mapping>
+
+  
+  <filter>
+    <filter-name>SessionFilter</filter-name>
+    <filter-class>
+        com.bank.filter.SessionFilter
+    </filter-class>
+    <init-param>
+        <param-name>avoid-urls</param-name>
+        <param-value>login.jsp</param-value>
+    </init-param>
+</filter>
+<filter-mapping>
+    <filter-name>SessionFilter</filter-name>
+    <url-pattern>/*</url-pattern>
+</filter-mapping>
+  
+  <session-config>
+	<session-timeout>60</session-timeout>
+  </session-config>
+
+<taglib>
+  <taglib-uri>/WEB-INF/struts-html.tld</taglib-uri>
+  <taglib-location>/WEB-INF/struts-html.tld</taglib-location>
+</taglib>
+<taglib>
+  <taglib-uri>/WEB-INF/struts-bean.tld</taglib-uri>
+  <taglib-location>/WEB-INF/struts-bean.tld</taglib-location>
+</taglib>
+<taglib>
+  <taglib-uri>/WEB-INF/struts-logic.tld</taglib-uri>
+  <taglib-location>/WEB-INF/struts-logic.tld</taglib-location>
+</taglib>
+<taglib>
+   <taglib-uri>/WEB-INF/struts-tiles.tld</taglib-uri>
+  <taglib-location>/WEB-INF/struts-tiles.tld</taglib-location>
+</taglib>
+  
+   <!--  
+   <Context path="" docBase="bank" reloadable="true" 
+              debug="0" cookies="false" useNaming="true" antiJARLocking="true"
+              antiResourceLocking="true"></Context>
+              -->
+</web-app>
+
+
