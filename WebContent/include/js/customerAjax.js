@@ -7,10 +7,14 @@ contextName = context;
 var url =  contextName+"/customer.do?method=LOADALLCUSTOMERS";
 $("#customers").load(url, function (response) {
         customerNames = response.split(ajaxStringDelimiter);
-      //  alert(customerNames[0]);
-        $().ready(function() { 
+        $( "#customerNames" ).autocomplete({
+            source: customerNames
+          });
+        
+     /*   $().ready(function() { 
                 $("#customerNames").autocomplete(customerNames);
-});
+});*/
+        
 });  
 }
 

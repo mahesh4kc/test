@@ -9,14 +9,24 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Bill Redemption Maintenance</title>
-<jsp:include page="includeCalendarJS.jsp"></jsp:include>
 <script type="text/javascript">
+$(function() {
+    $( "#redemptionDate" ).datepicker
+    ({
+    	dateFormat: "dd/mm/yy",
+    		changeMonth: true,
+    	      changeYear: true
+      });
+  });
+  
 $(document).ready(function() {
 	$("#form1").validationEngine()
 });
 </script>
 <script type="text/javascript" src="<%=request.getContextPath()%>/include/js/bill.js"></script>
 <script>
+
+
 var DateDiff = {
 		   
 	    inDays: function(d1, d2) {

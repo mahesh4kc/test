@@ -48,9 +48,14 @@ function loadDistinctSerial(context){
 	$("#billSerialDiv").load(url, function (response) {
 	        billSerial = response.split(ajaxStringDelimiter);
 	      //  alert(customerNames[0]);
-	        $().ready(function() { 
+	       
+	        $( "#billSerial" ).autocomplete({
+	            source: billSerial
+	          });
+	        
+	        /*$().ready(function() { 
 	                $("#billSerial").autocomplete(billSerial);
-	});
+	});*/
 	}); 	
 }
 
@@ -64,9 +69,12 @@ function loadDistinctSerialNo(){
 	$("#billSerialNoDiv").load(url, function (response) {
 	        billSerialNo = response.split(ajaxStringDelimiter);
 	      //  alert(customerNames[0]);
-	        $().ready(function() { 
+	        $( "#billNumber" ).autocomplete({
+	            source: billSerialNo
+	          });
+	       /* $().ready(function() { 
 	                $("#billNumber").autocomplete(billSerialNo);
-	});
+	});*/
 	}); 	
 }
 

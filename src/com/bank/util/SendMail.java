@@ -21,7 +21,19 @@ public class SendMail {
 	private Properties props;
 	
 	public SendMail(){
-		host = "smtp.gmail.com";
+		host = "mail.jewelbankers.com";
+	    from = BankConstant.SUPPORT_MAIL_ID;
+	    pass = "Bhawarlalkag@82";
+	    props = System.getProperties();
+	    //props.put("mail.smtp.starttls.enable", "true"); // added this line
+	    props.put("mail.smtp.host", host);
+	    props.put("mail.smtp.user", from);
+	    props.put("mail.smtp.password", pass);
+	    props.put("mail.smtp.port", "26");
+	    props.put("mail.smtp.auth", "true");
+	    
+	/* This seettings is for gmail id   
+	 * host = "smtp.gmail.com";
 	    from = BankConstant.SUPPORT_MAIL_ID;
 	    pass = "Bhawarlalkag@82";
 	    props = System.getProperties();
@@ -31,6 +43,7 @@ public class SendMail {
 	    props.put("mail.smtp.password", pass);
 	    props.put("mail.smtp.port", "587");
 	    props.put("mail.smtp.auth", "true");
+	*/
 	}
 	
 	public void sendGmail(String[] to, String subject, String body){
@@ -69,7 +82,7 @@ public class SendMail {
 	public static void main(String[] args) throws Exception {
 	// Send a test message
 	SendMail sender = new SendMail();
-	 String[] toAddress = {"mahesh4kc@gmail.com"}; // added this line
+	 String[] toAddress = {"jewelbankers@gmail.com","support@jewelbankers.com"}; // added this line
 	 //String[] toAddress = {"support@jewelbankers.com"}; // added this line
 	 String subject = "Test mail from support@jewelbankers.com";
 	 String body = "Test mail from mahesh4kc@gmail.com.com - java code";

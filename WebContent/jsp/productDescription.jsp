@@ -61,8 +61,8 @@
 
 
 <div align="center">
-	<input type="button" value="Add Row" onclick="addRow('dataTable')"/>
-	<input type="button" value="Delete Row" onclick="deleteRow('dataTable')"/>
+	<button type="button" onclick="addRow('dataTable')">Add Row</button>
+	<button type="button" onclick="deleteRow('dataTable')">Delete Row</button>
 	<html:submit property="method" ><bean:message key="button.save" /></html:submit>
 </div>
 </nested:notEmpty>	

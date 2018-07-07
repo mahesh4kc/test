@@ -66,24 +66,32 @@ function bodyOnLoad(){
 	<html:link action="/forgot.do?method=CLEAR">Forgot Password</html:link>
 </div>
 <div align="right">	&nbsp;</div>
-<div align="right">	<label>To see demo, use below Login ID and Password</label></div>
-<div align="right">	<label>Login ID:jewelbankers &nbsp;&nbsp;Password:jewelbankers</label>	&nbsp;</div>
+<div align="right">	<label><B><label><a target="_blank" href="https://www.youtube.com/watch?v=BmOpD46eZoA">Watch Jewelbankers Demo </a></label></B></label></div>
+<div align="right">	&nbsp;</div>
+<div align="right">	<label> <U>To Use:</U> Login ID & Password is <U>jewelbankers</U></label></div>
+<div align="right">	&nbsp;</div>
 </div>
 <!-- Login Screen Ends -->
 
 </table>
 </html:form>
 <table width="100%" >
-<tr></tr>
-<tr><td style="font: bold 25px MS Sans Serif;"><B><label>Play the Demo for Jewelbankers</label></B></td></tr>
+<tr><td>
+</td>
+</tr>
+<tr>
+	<!--<td style="font: bold 15px MS Sans Serif;"><B><label>Play the Demo for Jewelbankers</label></B></td> --></tr>
 	<tr>
 		
-		<td><video width="420" height="320" controls>
-  <source src="<bean:message key="videoPath" />" type="video/mp4">
+		<td>
+		<!-- 
+		<video width="420" height="320" controls>
+  <source src="<bean:message key="videoPath" />" type="<bean:message key="videoType" />">
   <object data="<bean:message key="videoPath" />" width="420" height="320">
     <embed src="<bean:message key="videoPath" />" width="420" height="320">
   </object> 
 </video>
+ -->
 
 		</td>
 		<td>
