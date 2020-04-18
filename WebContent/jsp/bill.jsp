@@ -59,8 +59,10 @@ $(document).keydown(function(e){
 <div align="right">User : <bean:write name="billForm" property="userLoggedIn"/> </div>
 <div align="right">
 	<html:submit property="method" ><bean:message key="button.search" /></html:submit> 
-	<html:submit property="method" ><bean:message key="button.clear" /></html:submit>
+	<html:submit property="method" ><bean:message key="button.clearnew" /></html:submit>
+	<html:submit property="method" ><bean:message key="button.savenew" /></html:submit>
 	<html:submit property="method" ><bean:message key="button.save" /></html:submit>
+	<html:submit property="method" ><bean:message key="button.print" /></html:submit>
 	<logic:equal name="billForm" property="billDeleteButtonFlag" value="Y">
 	<html:submit property="method" ><bean:message key="button.delete" /></html:submit>
 	</logic:equal>

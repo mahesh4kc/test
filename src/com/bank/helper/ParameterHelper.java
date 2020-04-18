@@ -106,6 +106,9 @@ public class ParameterHelper {
 	public  String getShopName(){
 		return this.parameterMap.get(BankConstant.SHOP_NAME);
 	}
+	public  String getShopBusiness(){
+		return this.parameterMap.get(BankConstant.SHOP_BUSINESS);
+	}
 	
 	public  String getShopNumber(){
 		return this.parameterMap.get(BankConstant.SHOP_NO);
@@ -164,6 +167,26 @@ public class ParameterHelper {
 	}
 	
 	
+
+	public String getShopAddress(){
+		
+		if(this.getShopArea() != null){
+			return this.getShopNumber() + this.getShopStreet() 
+			+ this.getShopArea() + this.getShopCity() + this.getShopPinCode();	
+		}else{
+			return "";
+		}
+		
+	}	
+
+	public String getShopDistrictState(){		
+		if(this.getShopDistrict() != null){
+			return this.getShopState() + this.getShopDistrict();	
+		}else{
+			return "";
+		}
+		
+	}	
 	
 	public  String getShopDetails(){
 		
@@ -187,6 +210,14 @@ public class ParameterHelper {
 	
 	public String getAuctionDescription(){
 		return this.parameterMap.get(BankConstant.AUCTION_DETAILS).replaceAll(BankConstant.LINEBREAK,BankConstant.ESCAPE_LINEBREAK);
+	}
+
+	public String getShopDistrict(){
+		return this.parameterMap.get(BankConstant.DISTRICT);
+	}
+	
+	public String getShopLicence(){
+		return this.parameterMap.get(BankConstant.SHOP_LICENCE);
 	}
 	
 	public String getLoginID(HttpServletRequest request) {

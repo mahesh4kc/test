@@ -86,7 +86,9 @@
       				name="billForm"
       				validate="true"
       				input="page.bill" >
-     				<forward name="success" path="page.bill" />    	
+     				<forward name="success" path="page.bill" />
+     				<forward name="print" path="/bill.do?method=PRINT" />
+     				<forward name="nextbill" path="/bill.do?method=NEXTBILL" />
      				<forward name="failure" path="page.error" /> 
      				<forward name="inValidSession" path="page.error" />   	
     	</action>

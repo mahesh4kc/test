@@ -1,2 +1,0 @@
-<script type="text/javascript" src="<%=request.getContextPath()%>/include/js/CalendarControl.js"></script>
-<script type="text/javascript" src="<%=request.getContextPath()%>/include/js/dateValidation.js"></script>

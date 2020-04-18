@@ -93,11 +93,11 @@ public class CryptoLibrary
                 {
                 CryptoLibrary cl = new CryptoLibrary();
                 String user = "PCHANDRA".toUpperCase().trim();
-                String pass = "jewelbankers";
+                String pass = "jm9444495979";
                 String euser = cl.encrypt(user);
                 String epass = cl.encrypt(pass);
-                String duser = cl.decrypt("v2VyCHVNdUnflV2pR1waHg==");
-                String dpass = cl.decrypt("9f/uDU6BhdHZ4o6Ftgd6gw==");
+                String duser = cl.decrypt("xdJLa6nRtllrS06ajilS7w==");
+                String dpass = cl.decrypt("OzvXA/8t8mAriXuNxFjDuQ==");
                 System.out.println("euser: " + " --> " + euser );
                 System.out.println("epass: " + " --> " + epass );
                 System.out.println("duser" + " --> " + duser );

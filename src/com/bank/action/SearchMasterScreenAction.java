@@ -72,7 +72,7 @@ public class SearchMasterScreenAction extends LookupDispatchAction{
 	 }
 	 
 		//* @see org.apache.struts.actions.DispatchAction#execute(org.apache.struts.action.ActionMapping, org.apache.struts.action.ActionForm, javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse)
-	 public ActionForward generatePDF(ActionMapping mapping, ActionForm form,HttpServletRequest request, 
+	 public void generatePDF(ActionMapping mapping, ActionForm form,HttpServletRequest request, 
 			 HttpServletResponse response) throws SQLException,Exception{
 		System.out.println("generatePDF");
 		ByteArrayOutputStream byteArrayOutputStream=null;
@@ -108,11 +108,11 @@ public class SearchMasterScreenAction extends LookupDispatchAction{
 							parameterHelper.getLoginID()+BankConstant.FILE_TYPE_PDF_SUFFIX);
 				}
 		 }		 
-		return mapping.findForward("success");
+		//return mapping.findForward("success");
 	 }
 	 
 		//* @see org.apache.struts.actions.DispatchAction#execute(org.apache.struts.action.ActionMapping, org.apache.struts.action.ActionForm, javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse)
-	 public ActionForward generateAuctionPDF(ActionMapping mapping, ActionForm form,HttpServletRequest request, 
+	 public void generateAuctionPDF(ActionMapping mapping, ActionForm form,HttpServletRequest request, 
 			 HttpServletResponse response) throws SQLException,Exception{
 		System.out.println("generateAuctionPDF starts");
 		 SearchMasterScreenForm searchMasterScreenForm;
@@ -144,10 +144,10 @@ public class SearchMasterScreenAction extends LookupDispatchAction{
 					 utility.setResponseFormat(response, utility.getByteArrayOutputStream(),BankConstant.APPLICATION_MIME_TYPE_PDF,
 							 parameterHelper.getLoginID()+BankConstant.FILE_TYPE_PDF_SUFFIX);
 		 //}		 
-		return mapping.findForward("success");
+		//return mapping.findForward("success");
 	 }
 		//* @see org.apache.struts.actions.DispatchAction#execute(org.apache.struts.action.ActionMapping, org.apache.struts.action.ActionForm, javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse)
-	 public ActionForward generateXLS(ActionMapping mapping, ActionForm form,HttpServletRequest request, 
+	 public void generateXLS(ActionMapping mapping, ActionForm form,HttpServletRequest request, 
 			 HttpServletResponse response) throws SQLException,Exception{
 		System.out.println("generateXLS");
 		ByteArrayOutputStream baos=null;
@@ -175,7 +175,7 @@ public class SearchMasterScreenAction extends LookupDispatchAction{
 		 }		 
 		
 		
-		return mapping.findForward("success");
+		//return mapping.findForward("success");
 	 }
 		//* @see org.apache.struts.actions.DispatchAction#execute(org.apache.struts.action.ActionMapping, org.apache.struts.action.ActionForm, javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse)
 	 public ActionForward search(ActionMapping mapping, ActionForm form,HttpServletRequest request, 

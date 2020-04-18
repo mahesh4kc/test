@@ -1,5 +1,3 @@
-#Sun Nov 25 12:20:26 IST 2012
 eclipse.preferences.version=1
-encoding//src/com/bank/dao/UTF8MySqlDataStorage.java=UTF-8
 encoding//src/com/bank/util/PDFUtility.java=UTF-8
-encoding//src/com/bank/util/auction/AuctionNoticesUtil.java=UTF-8
+encoding//src/com/bank/util/pdf/BillPdf.java=UTF-8

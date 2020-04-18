@@ -1,5 +1,6 @@
 package com.bank.action;
 
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -29,22 +30,83 @@ import com.bank.helper.ParameterHelper;
 import com.bank.successmessage.SuccessMessage;
 import com.bank.util.BankConstant;
 import com.bank.util.DateUtil;
+import com.bank.util.auction.AuctionNoticesUtil;
+import com.bank.util.pdf.BillPdf;
 
 public class BillAction extends SuccessMessage{
 	
 	 protected Map<String, String> getKeyMethodMap() {
 	        Map<String, String> map = new HashMap<String, String>();
 	        map.put("button.clear", "clear");
+	        map.put("button.clearnew", "clear");
 	        map.put("button.search", "search");
 	        map.put("button.save", "save");
+	        map.put("button.savenew", "savenew");
 	        map.put("button.delete", "delete");	        
 	        map.put("button.redem", "redem");
+	        map.put("button.print", "printbill");
+	        map.put("button.nextbill", "nextbill");
 	        map.put("loadBillDetails", "loadBillDetails");
 	        map.put("loadBillDistinctSerial", "loadBillDistinctSerial");
-	        map.put("loadBillDistinctSerialNo", "loadBillDistinctSerialNo");
-	        
+	        map.put("loadBillDistinctSerialNo", "loadBillDistinctSerialNo");	        
 	        return map;
 	    }
+
+
+		//* @see org.apache.struts.actions.DispatchAction#execute(org.apache.struts.action.ActionMapping, org.apache.struts.action.ActionForm, javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse)
+		 public ActionForward savenew(ActionMapping mapping, ActionForm form,HttpServletRequest request, 
+				 HttpServletResponse response) throws SQLException,Exception{
+			System.out.println("save method fired");
+			 ActionErrors errors=null;
+			 BillForm billForm = (BillForm )form;
+			 Integer billSequence=0;
+			 BillHeaderBO billHeaderBO = null;
+			 HttpSession session = request.getSession();
+			 String jndiName = (String) session.getAttribute("databaseName");
+			 BillHeaderDAO billHeaderDAO = new BillHeaderDAO(jndiName);
+			 BillDetailDAO billDetailDAO = new BillDetailDAO(jndiName);
+			 ParameterHelper parameterHelper = new ParameterHelper(jndiName,request);
+			 
+
+			 if (billForm != null)
+			{
+				errors = billForm.validate(mapping, request);
+				saveErrors(request, errors);
+							
+			} 
+			 if (errors!= null && errors.size() < 1 && 
+					 !billHeaderDAO.isBillExistsByBillSerialNo(billForm.getBillHeaderBO().getBillSerial(), billForm.getBillHeaderBO().getBillNumber())){
+			 billSequence = billHeaderDAO.createBillHeader(billForm.getBillHeaderBO());	
+			 }else{
+				 billHeaderBO = billHeaderDAO.executeBillHeaderByBillSerialNo(
+						 			billForm.getBillHeaderBO().getBillSerial(), billForm.getBillHeaderBO().getBillNumber());
+				 billSequence = billHeaderBO.getBillSequence();
+				// System.out.println("getCustomerID"+billForm.getBillHeaderBO().getCustomerID());
+				 billHeaderDAO.updateBillHeader(billForm.getBillHeaderBO());
+			 }
+			
+			 billDetailDAO.createUpdateDelete(billForm.getBillDetailList(), billSequence);
+
+			 //Print the Bill
+			//BillPdf billPdf = new BillPdf(billForm, parameterHelper);
+			 //ByteArrayOutputStream outputStream = billPdf.getBillInPDF();
+			 //session.setAttribute("billpdfstream",outputStream);
+			 /* billPdf.setResponseFormat(response, outputStream ,BankConstant.APPLICATION_MIME_TYPE_PDF,
+						 parameterHelper.getLoginID()+BankConstant.FILE_TYPE_PDF_SUFFIX);
+			 //response.getOutputStream().flush();
+			 //response.getOutputStream().close();
+			*/
+			 
+			 billForm.getBillHeaderBO().setBillSequence(billSequence);
+			
+			 //clear all the fields and generate the next serial number
+			 clearAfterSave(parameterHelper.getCurrentBillSerial(),billForm, billHeaderDAO,jndiName,request);
+			 
+			 setSuccessMessage("success.billSave", request);
+			 		 
+			return mapping.findForward("success");
+		}
+
 
 	//* @see org.apache.struts.actions.DispatchAction#execute(org.apache.struts.action.ActionMapping, org.apache.struts.action.ActionForm, javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse)
 	 public ActionForward save(ActionMapping mapping, ActionForm form,HttpServletRequest request, 
@@ -77,17 +139,70 @@ public class BillAction extends SuccessMessage{
 			// System.out.println("getCustomerID"+billForm.getBillHeaderBO().getCustomerID());
 			 billHeaderDAO.updateBillHeader(billForm.getBillHeaderBO());
 		 }
+		
 		 billDetailDAO.createUpdateDelete(billForm.getBillDetailList(), billSequence);
-		 billForm.getBillHeaderBO().setBillSequence(billSequence);
+
+		 //Print the Bill
+		BillPdf billPdf = new BillPdf(billForm, parameterHelper);
+		 ByteArrayOutputStream outputStream = billPdf.getBillInPDF();
+		 session.setAttribute("billpdfstream",outputStream);
+		 /* billPdf.setResponseFormat(response, outputStream ,BankConstant.APPLICATION_MIME_TYPE_PDF,
+					 parameterHelper.getLoginID()+BankConstant.FILE_TYPE_PDF_SUFFIX);
+		 //response.getOutputStream().flush();
+		 //response.getOutputStream().close();
+		*/
+		 
+		 //billForm.getBillHeaderBO().setBillSequence(billSequence);
 		
 		 //clear all the fields and generate the next serial number
-		 clearAfterSave(parameterHelper.getCurrentBillSerial(),billForm, billHeaderDAO,jndiName,request);
+		 //clearAfterSave(parameterHelper.getCurrentBillSerial(),billForm, billHeaderDAO,jndiName,request);
 		 
 		 setSuccessMessage("success.billSave", request);
 		 		 
 		return mapping.findForward("success");
 	}
+
+		//* @see org.apache.struts.actions.DispatchAction#execute(org.apache.struts.action.ActionMapping, org.apache.struts.action.ActionForm, javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse)
+	 public void printbill(ActionMapping mapping, ActionForm form,HttpServletRequest request, 
+			 HttpServletResponse response) throws SQLException,Exception{
+		 System.out.println("print method fired");
+		 BillForm billForm = (BillForm )form;
+		 HttpSession session = request.getSession();
+		 String jndiName = (String) session.getAttribute("databaseName");
+		 ParameterHelper parameterHelper = new ParameterHelper(jndiName,request); 
+
+		 //Print the Bill
+		 BillPdf billPdf = new BillPdf();
+		 ByteArrayOutputStream outputStream = (ByteArrayOutputStream)session.getAttribute("billpdfstream");
+		 billPdf.setResponseFormat(response, outputStream ,BankConstant.APPLICATION_MIME_TYPE_PDF,
+					 parameterHelper.getLoginID()+BankConstant.FILE_TYPE_PDF_SUFFIX);
+		 response.getOutputStream().flush();
+		 response.getOutputStream().close();
+		 //response.sendRedirect("nextbill");
+		 //return perform(mapping, billForm, request, response);// new ActionForward("/bill.do?method=NEXTBILL", true);
+		 //return mapping.findForward("nextbill").setRedirect(true);; 
+	}
 	 
+	//* @see org.apache.struts.actions.DispatchAction#execute(org.apache.struts.action.ActionMapping, org.apache.struts.action.ActionForm, javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse)
+		 public ActionForward nextbill(ActionMapping mapping, ActionForm form,HttpServletRequest request, 
+				 HttpServletResponse response) throws SQLException,Exception{
+			System.out.println("save method fired");
+			 BillForm billForm = (BillForm )form;
+			 Integer billSequence=0;
+			 HttpSession session = request.getSession();
+			 String jndiName = (String) session.getAttribute("databaseName");
+			 ParameterHelper parameterHelper = new ParameterHelper(jndiName,request); 
+			 BillHeaderDAO billHeaderDAO = new BillHeaderDAO(jndiName);
+			 billForm.getBillHeaderBO().setBillSequence(billSequence);
+			
+			 //clear all the fields and generate the next serial number
+			 clearAfterSave(parameterHelper.getCurrentBillSerial(),billForm, billHeaderDAO,jndiName,request);
+			 
+			 setSuccessMessage("success.billSave", request);
+			 		 
+			return mapping.findForward("success");
+		}
+
 	 private void clearAfterSave(String billSerial, BillForm billForm, BillHeaderDAO billHeaderDAO,String jndiName,HttpServletRequest request){
 		 System.out.println(" clearAfterSave starts");
 		 		 

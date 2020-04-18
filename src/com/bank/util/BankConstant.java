@@ -61,6 +61,7 @@ public class BankConstant {
 	
 
 	public static final String SHOP_NAME = "SHOP_NAME";
+	public static final String SHOP_BUSINESS = "PAWN_BROKER";
 	public static final String SHOP_NO = "SHOP_NO";
 	public static final String SHOP_AREA = "SHOP_AREA";
 	public static final String SHOP_STREET = "SHOP_STREET";
@@ -68,6 +69,7 @@ public class BankConstant {
 	public static final String SHOP_PINCODE = "SHOP_PINCODE";
 	public static final String SHOP_STATE = "SHOP_STATE";
 	public static final String SHOP_TYPE = "PAWN_BROKER";
+	public static final String SHOP_LICENCE = "LICENCE_NO";
 	
 	public static final String SEARCH_SERIALS = "SEARCH_SERIALS";
 	
