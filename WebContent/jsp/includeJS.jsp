@@ -8,9 +8,9 @@
 <script type="text/javascript" src="<%=request.getContextPath()%>/include/js/amountInWords.js"></script>
 <script type="text/javascript" src="<%=request.getContextPath()%>/include/js/changePassword.js"></script>
 <script type="text/javascript" src="<%=request.getContextPath()%>/include/js/csshorizontalmenu.js"></script>
-
+<!-- 
 <script type="text/javascript" src="<%=request.getContextPath()%>/jsp/loadJewelBankersProperties.jsp"></script>
-
+-->
 <!-- Jquery Starts -->
 <jsp:include page="Jquery-js-css.jsp"></jsp:include> 
 <!-- Jquery Ends -->
